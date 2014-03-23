@@ -122,6 +122,12 @@ nav li a:hover{
 
 header section{
     text-align:center;
+    position: relative;
+}
+header .require{
+    font-size:.7em;
+    position: absolute;
+    top:0; right:265px;
 }
 header h1{
     font-size:3.5em;
