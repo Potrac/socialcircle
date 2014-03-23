@@ -4,6 +4,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -81,11 +82,12 @@ html{
     font-family: 'Open Sans', sans-serif;
 }
 body{
-    background: #e5e5e5;
+    /*background: #e5e5e5;*/
 }
 /*Header*/
 header {
     padding:80px 70px 50px 70px;
+    /*background: radial-gradient( farthest-side circle at top left, rgb(255, 66, 66), rgb(102, 102, 255));*/
     background: radial-gradient( farthest-side circle at top left, red, rgb(102, 102, 255));
     color:#fff;
 }
@@ -129,6 +131,7 @@ header h1 + p{
     margin-bottom:25px;
 }
 header button{
+    cursor:pointer;
     background:none;
     border:2px solid #fff;
     padding:10px 15px;
@@ -143,46 +146,49 @@ header button:active{
 
 
 .main{
-    padding:30px 70px; 
+    padding:50px 70px; 
     max-width:1000px;
     margin:0 auto;
-    color:#514f4f;
+    color:#596270;
+}
+.main a{
+    color:#000;
+    text-decoration: underline;
 }
 .main h2{
-    margin-bottom:20px;
+    line-height:26px;
+    font-size:1em;
 }
 .main li{
     float:left;
-    width:200px;
+    width:250px;
     list-style: none;
-}
-.main li img{
-    height:28px; width:28px;
-    float:left;
-    margin:5px;
+    margin:0 20px 20px 0;
 }
 
-/*
-.main h2{
-    text-align:center;
+.main li span{
+    font-size: 1.2em;
+    float:left;
+    margin-right:6px;
 }
-.main .install{
-    margin:20px 0;
+.main li p{
+    clear:both;
+    margin-left:35px;
 }
-.main section .nbr{
-    padding:7px 10px;
-    border-radius:100px;
-    border:3px solid #514f4f;
-    font-size: .8em;
-    margin-right:10px;
-}
-*/
 
 footer{
-    /*background: blue;*/
+    background: #eaeaea;
+    margin-top: 20px;
 }
 footer .contain{
     padding:30px 70px; 
     max-width:1000px;
     margin:0 auto;
+}
+footer .contain p{
+    font-size:.8em;
+    color:#777777;
+}
+footer .contain p a{
+    color:#596270;
 }
