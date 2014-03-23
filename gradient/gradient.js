@@ -1,5 +1,4 @@
-/*
-function degrade(id,couleurfinale,temps) {
+function degrade (id,couleurfinale,temps) {
 
 	var	element 		= document.getElementById(id),
 		ecolor 			= element.style.background,
@@ -9,6 +8,8 @@ function degrade(id,couleurfinale,temps) {
 		increments 		= [0,0,0],
 		tempsecoule		= 0,
 		refreshtime		= 50; //milliseconds
+
+
 
 	for (var i = 0; i <= 3; i++) {				// Permet de crée un tabelau "rgb" qui contient les codes couleurs
 		var color = /[0-9]+/.exec(ergb[i]);
@@ -53,20 +54,3 @@ function degrade(id,couleurfinale,temps) {
 var couleurfinale = [255,255,255];
 
 degrade("rond",couleurfinale,5000);
-*/
-
-
-function anim(img) {
-	var myImg = document.getElementById(img);
-    var s = myImg.style,
-        color = parseInt(s.background.split("(")[1].split(",")[0])+10,
-       	result = s.background = "-webkit-radial-gradient( top left, circle, rgba("+color+", 207, 200, 1), transparent)";
-
-  		console.log(color);
-     if ( color < 100) {
-        setTimeout(anim, 500); // La fonction anim() fait appel à elle-même si elle n'a pas terminé son travail
-    } 
-
-}
-
-anim('rond');
