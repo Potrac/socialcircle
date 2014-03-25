@@ -100,6 +100,9 @@ function getScroll(){
 			if(onoff){
 				e.style[prefixed] = "grayscale(100%)";
 			}
+			else if(!onoff){
+				e.style[prefixed] = "grayscale(0%)";
+			}
 
 		}
 
@@ -113,12 +116,11 @@ function getScroll(){
 		var scrollinfo = getScroll(),
 			windowheight = window.innerHeight;
 
-		//alert(scrollinfo["t"]+" - "+ windowheight);
 
-		if(scrollinfo["t"] > windowheight*0.8){
+		if(scrollinfo["t"] > windowheight*0.3){
 			bandw(id, 1)
 		}
-		else if(scrollinfo["t"] <= windowheight*0.8){
+		else if(scrollinfo["t"] <= (windowheight*0.3)){
 			bandw(id, 0)
 		}
 	}
@@ -133,7 +135,7 @@ function getScroll(){
 	}
 
 
-//Things to update on resize (don't delete the others if don't know what there are)
+//Things to update on scroll (don't delete the others if don't know what there are)
 
 	window.onscroll = function(){
 		bandwonscroll("header");
