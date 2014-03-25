@@ -1,7 +1,3 @@
-
-/*NIQUE TA MEREEEEEE*/
-
-
 /* Reset */
 *, *:before, *:after{margin:0; padding:0;}
 *, *:before, *:after {
@@ -16,7 +12,7 @@ a {
     color: #fff;
     position: relative;
     padding: .5em;
-    margin: -.5em;
+    margin: .5em;
 }
 
 /* Helpers */
@@ -85,17 +81,23 @@ table tr:nth-child(even) {
 html{
     font-family: 'Open Sans', sans-serif;
 }
-body{
-    /*background: #e5e5e5;*/
-}
+
 /*Header*/
 header {
     position: relative;
-    padding:80px 0px 0px 0px;
-    /*background: radial-gradient( farthest-side circle at top left, rgb(255, 66, 66), rgb(102, 102, 255));*/
+    /* background: radial-gradient( farthest-side circle at top left, rgb(255, 66, 66), rgb(102, 102, 255)); 
     background: radial-gradient( farthest-side circle at top left, rgb(213, 0, 0), rgb(41, 41, 126));
+    background: -webkit-radial-gradient(top left, circle, rgb(213, 0, 0), rgb(41, 41, 126));
+    background:    -moz-radial-gradient(top left, circle, rgb(213, 0, 0), rgb(41, 41, 126));
+    background:     -ms-radial-gradient(top left, circle, rgb(213, 0, 0), rgb(41, 41, 126));
+    background:      -o-radial-gradient(top left, circle, rgb(213, 0, 0), rgb(41, 41, 126)); */
+    background-color: #3D832B;
     color:#fff;
-    border:1px solid rgba(0,0,0,.5);
+    -webkit-animation: color 20s infinite; /* Safari 4+ */
+    -moz-animation:    color 40s infinite; /* Fx 5+ */
+    -o-animation:      color 40s infinite; /* Opera 12+ */
+    animation:         color 40s infinite; /* IE 10+ */
+
 }
 
 
@@ -121,7 +123,7 @@ nav li a{
 nav li a.active,
 nav li a:hover{
     box-shadow:inset 0 0 1px rgba(0,0,0,.3);
-    background: rgba(0,0,0,.2);
+    background: rgba(0,0,0,.1);
 }
 
 
@@ -130,6 +132,16 @@ header section{
     text-align:center;
     position: relative;
     height: 100px;
+}
+header #round{
+    height: 100%; width: 100%;
+    padding: 80px 0px 0px 0px;
+    position: relative;
+    background: radial-gradient( farthest-side circle at top left, rgb(213, 0, 0), rgb(41, 41, 126,0));
+    background: -webkit-radial-gradient(top left, circle, rgb(213, 0, 0), rgba(41, 41, 126,0));
+    background:    -moz-radial-gradient(top left, circle, rgb(213, 0, 0), rgba(41, 41, 126,0));
+    background:     -ms-radial-gradient(top left, circle, rgb(213, 0, 0), rgba(41, 41, 126,0));
+    background:      -o-radial-gradient(top left, circle, rgb(213, 0, 0), rgba(41, 41, 126,0));
 }
 header .require{
     font-size:.7em;
@@ -176,16 +188,21 @@ header .godown{
     font-size:2em;
     text-shadow:0 2px 1px rgba(0,0,0,0.6);
     -webkit-animation: bounce 3s infinite; /* Safari 4+ */
-    -moz-animation:    bounce 5s infinite; /* Fx 5+ */
-    -o-animation:      bounce 5s infinite; /* Opera 12+ */
-    animation:         bounce 5s infinite; /* IE 10+ */
+    -moz-animation:    bounce 3s infinite; /* Fx 5+ */
+    -o-animation:      bounce 3s infinite; /* Opera 12+ */
+    animation:         bounce 3s infinite; /* IE 10+ */
+    transition: opacity 0.5s;
 }
 
 .main{
-    padding:50px 70px; 
+    padding:10% 70px; 
     max-width:1000px;
     margin:0 auto;
     color:#596270;
+}
+.main ul{
+    top: 0px;
+    bottom: 0px;
 }
 .main a{
     color:#000;
@@ -212,11 +229,10 @@ header .godown{
     margin-left:35px;
 }
 
-
-
 footer{
     background: #eaeaea;
     margin-top: 20px;
+    text-align: center;
 }
 footer .contain{
     padding:30px 70px; 
@@ -260,4 +276,51 @@ footer .contain p a{
     50% {bottom:30px;}
     75% {bottom:20px;}
     100%{bottom:30px;}
+}
+
+
+@-webkit-keyframes color {
+    0%  {background-color: #29297E;}
+    25% {background-color: #29297E;}
+    30% {background-color: #3D832B;}
+    95% {background-color: #3D832B;}
+    100%{background-color: #29297E;}
+}
+@-moz-keyframes color {
+    0%  {background-color: #29297E;}
+    25% {background-color: #29297E;}
+    30% {background-color: #3D832B;}
+    95% {background-color: #3D832B;}
+    100%{background-color: #29297E;}
+}
+@-o-keyframes color {
+    0%  {background-color: #29297E;}
+    25% {background-color: #29297E;}
+    30% {background-color: #3D832B;}
+    95% {background-color: #3D832B;}
+    100%{background-color: #29297E;}
+}
+@keyframes color {
+    0%  {background-color: #29297E;}
+    25% {background-color: #29297E;}
+    30% {background-color: #3D832B;}
+    95% {background-color: #3D832B;}
+    100%{background-color: #29297E;}
+}
+
+@-webkit-keyframes blur {
+    0%,100% {-webkit-filter: blur(1px);}
+    50%     {-webkit-filter: blur(0px);}
+}
+@-moz-keyframes blur {
+    0%,100% {-moz-filter: blur(1px);}
+    50%     {-moz-filter: blur(0px);}
+}
+@-o-keyframes blur {
+    0%,100% {-o-filter: blur(1px);}
+    50%     {-o-filter: blur(0px);}
+}
+@keyframes blur {
+    0%,100% {filter: blur(1px);}
+    50%     {filter: blur(0px);}
 }
