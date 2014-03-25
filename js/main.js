@@ -44,6 +44,7 @@ function getScroll(){
 	}
 
 	fullscreen(".main");
+	fullscreen(".instructions");
 
 
 //Center element position relatif to his parent
@@ -105,5 +106,6 @@ function getScroll(){
 
 	window.onresize = function(){
 		fullscreen(".main");
+		fullscreen(".instructions");
 		headerform("header","header section");
 	}
