@@ -108,7 +108,21 @@ function getScroll(){
 		}
 	}
 
-	bandw('header', 1)
+	function bandwonscroll(id){
+
+		var scrollinfo = getScroll(),
+			windowheight = window.innerHeight;
+
+		//alert(scrollinfo["t"]+" - "+ windowheight);
+
+		if(scrollinfo["t"] > windowheight*0.8){
+			bandw(id, 1)
+		}
+		else if(scrollinfo["t"] <= windowheight*0.8){
+			bandw(id, 0)
+		}
+	}
+	
 
 //Things to update on resize (don't delete the others if don't know what there are)
 
@@ -116,4 +130,11 @@ function getScroll(){
 		fullscreen(".main");
 		fullscreen(".instructions");
 		headerform("header","header section");
+	}
+
+
+//Things to update on resize (don't delete the others if don't know what there are)
+
+	window.onscroll = function(){
+		bandwonscroll("header");
 	}
