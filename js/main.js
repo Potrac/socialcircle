@@ -126,7 +126,7 @@ function getScroll(){
 	}
 	
 
-//Things to update on resize (don't delete the others if don't know what there are)
+//Things to update on resize (don't delete the others if don't know what there are) 
 
 	window.onresize = function(){
 		fullscreen(".main");
