@@ -2,36 +2,25 @@
 
 	function headerform(){
 		var header = document.querySelector("header"),
-			headerheight = window.innerHeight + 100,
+			headerheight = window.innerHeight + 1,
 			headersection = document.querySelector("header section");
 
 		header.style.height = headerheight + "px";
 
 		headersection.style.marginTop = ((headerheight-200)/4) + "px";
 	}
-
 	headerform();
 
-	window.onresize=function(){
+	window.onresize = function(){
 		headerform();
-	};
-
-//Show the requires on mouse overflow in the header
-
-	function requireshow(){
-
-		var requiresbutton = document.querySelectorAll(".require")[0],
-			requireshidden = document.getElementById("requireinfo");
-
-
-		requiresbutton.addEventListener("mouseover", function(){
-			requireshidden.style.display="block";
-		},false)
-
-		requiresbutton.addEventListener("mouseout", function(){
-			requireshidden.style.display="none";
-		},false)
-
 	}
 
-	requireshow();
+//Hide the arrow on scroll
+	function toggleHide(id){
+		var e = document.getElementById(id);
+		e.style.display = 'none';
+	}
+
+	window.onscroll = function(){
+		toggleHide('down');
+	}
