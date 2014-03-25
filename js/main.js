@@ -88,18 +88,26 @@ function getScroll(){
 	}
 
 //put in black and white element
-	function bandw(id,onoff){ //0 = from b&w to colorfull / 1 = from colorfull to b&w
-		var element = document.querySelector(id);
+	function bandw(id, onoff){ //0 = from b&w to colorfull / 1 = from colorfull to b&w
+		var e = document.getElementById(id),
+			prefixes = ['-webkit-','-moz-','-o-','-ms-'];
 
-		if(onoff){
-			element.style.WebkitFilter = "grayscale(1);"
+		for(var i in prefixes){
+
+			var prefixed = prefixes[i]+'filter';
+
+			if(onoff){
+				e.style[prefixed] = "grayscale(100%)";
+			}
+
 		}
+
 		if(!onoff){
-			element.style.property ="";
+			e.style.property="";
 		}
-
 	}
-	bandw("header",1)
+
+	bandw('round', 1)
 
 //Things to update on resize (don't delete the others if don't know what there are)
 
