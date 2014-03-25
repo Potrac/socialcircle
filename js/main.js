@@ -77,14 +77,14 @@ function getScroll(){
 		e.style.opacity = 1;
 	}
 
-	window.onscroll = function(){
+	function togglegestion(id){
 		var scrollinfo = getScroll();
 
 		if(scrollinfo["t"] > (window.innerHeight)/3){
-			toggleHide('down');
+			toggleHide(id);
 		}
 		else if(scrollinfo["t"] <= (window.innerHeight)/3){
-			toggleShow('down');
+			toggleShow(id);
 		}
 	}
 
@@ -139,4 +139,5 @@ function getScroll(){
 
 	window.onscroll = function(){
 		bandwonscroll("header");
+		togglegestion("down");
 	}
