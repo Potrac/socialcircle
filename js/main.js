@@ -14,24 +14,16 @@ function getScroll(){
         l = document.body.scrollLeft;
         w = document.body.scrollWidth;
         h = document.body.scrollHeight;
-    } else if (typeof(window.pageYOffset) == 'number') {
-        // Netscape compliant
-        t = window.pageYOffset;
-        l = window.pageXOffset;
-        w = window.innerWidth;
-        h = window.innerHeight;
-    } else {
-        alert('Error!');
     }
     return {t: t, l: l, w: w, h: h};
 }
 
 
-//Center the title and the section in the HEADER - support resize
+//center the title and the section in the HEADER - support resize
 
 	function headerform(idheader,idsection){
 		var header 			= document.querySelector(idheader),
-			headerheight 	= window.innerHeight + 1,
+			headerheight 	= window.innerHeight,
 			headersection 	= document.querySelector(idsection);
 
 		header.style.height = headerheight + "px";
@@ -46,7 +38,7 @@ function getScroll(){
 
 	function fullscreen(id){
 		var header 		 = document.querySelector(id),
-			headerheight = window.innerHeight + 1;
+			headerheight = window.innerHeight;
 
 		header.style.height = headerheight + "px";
 	}
@@ -71,7 +63,6 @@ function getScroll(){
 		element.style.paddingBottom = element.style.paddingTop	= verticalmar;
 		element.style.paddingRight 	= element.style.paddingLeft = horizontalmar;		
 	}
-
 
 
 //Hide the arrow on scroll

@@ -127,7 +127,6 @@ nav li a:hover{
 }
 
 
-
 header section{
     text-align:center;
     position: relative;
@@ -195,10 +194,24 @@ header .godown{
 }
 
 .main{
-    padding:10% 70px; 
+    padding:5% 70px; 
     max-width:1000px;
     margin:0 auto;
     color:#596270;
+    position: relative;
+}
+.main .section-title{
+    text-align: center;
+    font-size:2em;
+    margin-bottom:20px;
+}
+.main .section-title + hr{
+    width:300px; height:1px;
+    border:none;
+    margin:0 auto;
+    text-align: center;
+    background: #aeaeae;
+    margin-bottom:70px;
 }
 .main ul{
     top: 0px;
@@ -228,6 +241,7 @@ header .godown{
     clear:both;
     margin-left:35px;
 }
+
 
 footer{
     background: #eaeaea;
