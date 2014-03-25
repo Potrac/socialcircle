@@ -98,6 +98,10 @@ header {
     -o-animation:      color 40s infinite; /* Opera 12+ */
     animation:         color 40s infinite; /* IE 10+ */
 
+    transition: -webkit-filter 2s;
+    transition: -moz-filter 2s;
+    transition: -o-filter 2s; 
+
 }
 
 
