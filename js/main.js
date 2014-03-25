@@ -90,8 +90,8 @@ function getScroll(){
 
 //put in black and white element
 	function bandw(id, onoff){ //0 = from b&w to colorfull / 1 = from colorfull to b&w
-		var e = document.getElementById(id),
-			prefixes = ['-webkit-','-moz-','-o-','-ms-'];
+		var e 			= document.querySelector(id),
+			prefixes 	= ['-webkit-','-moz-','-o-','-ms-'];
 
 		for(var i in prefixes){
 
@@ -108,7 +108,7 @@ function getScroll(){
 		}
 	}
 
-	bandw('round', 1)
+	bandw('header', 1)
 
 //Things to update on resize (don't delete the others if don't know what there are)
 
