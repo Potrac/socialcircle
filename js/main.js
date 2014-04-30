@@ -124,7 +124,77 @@ function getScroll(){
 			bandw(id, 0)
 		}
 	}
-	
+
+//Fall and bounding of picture in slider
+
+function falling (ele) {
+	var marggin = 30; //---Can be changed--- Give the falling picture's top heigth wich will still displayed;
+
+	function bounding(style){
+
+		setTimeout(function() {
+
+			style.WebkitTransition = 'bottom .3s ease-out';
+			style.MozTransition = 'bottom .3s ease-out';
+
+			style.bottom = -(height/1.5) + "px";
+
+			setTimeout(function() {
+				style.WebkitTransition = 'bottom .4s ease-in';
+				style.MozTransition = 'bottom .4s ease-in';
+
+				style.bottom = finalpos + "px";
+
+				setTimeout(function() {
+
+					style.WebkitTransition = 'bottom .2s ease-out';
+					style.MozTransition = 'bottom .2s ease-out';
+
+					style.bottom = -(height/1.25) + "px";
+
+					setTimeout(function() {
+						style.WebkitTransition = 'bottom .3s ease-in';
+						style.MozTransition = 'bottom .3s ease-in';
+
+						style.bottom = finalpos + "px";
+
+						setTimeout(function() {
+
+							style.WebkitTransition = 'bottom .1s ease-out';
+							style.MozTransition = 'bottom .1s ease-out';
+
+							style.bottom = -(height/1.12) + "px";
+
+							setTimeout(function() {
+								style.WebkitTransition = 'bottom .2s ease-in';
+								style.MozTransition = 'bottom .2s ease-in';
+
+								style.bottom = finalpos + "px";
+							}, 100);
+
+						}, 300);
+
+					}, 200);
+
+				}, 400);
+
+
+			}, 300);
+
+		}, 800);
+	}
+
+	var picture 	= 	document.querySelector(ele),
+		style 		=	picture.style,
+		height 		=  	picture.clientHeight,
+		finalpos	=  	-(height-marggin);
+
+
+	style.bottom =  finalpos + "px";
+
+	bounding(style);
+
+}
 
 //Things to update on resize (don't delete the others if don't know what there are) 
 
@@ -140,4 +210,11 @@ function getScroll(){
 	window.onscroll = function(){
 		bandwonscroll("header");
 		togglegestion("down");
+	}
+
+
+//Things to update on window load (don't delete the others if don't know what there are)
+
+	window.onload = function(){
+		falling(".one");
 	}

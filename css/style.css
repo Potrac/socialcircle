@@ -186,7 +186,7 @@ header button:active{
 header .godown{
     position: absolute;
     bottom: 30px;
-    width: 100%; height: 30px;
+    width: 98%; height: 30px;
     text-align: center;
     font-size:2em;
     text-shadow:0 2px 1px rgba(0,0,0,0.6);
@@ -246,35 +246,62 @@ header .godown{
     margin-left:35px;
 }
 
-.imglide{
+.imgslide{
     position: relative;
+    overflow: hidden;
     width: 100%; height: 400px;
     background-color: rgba(0,0,0,0.3);
 }
-.imglide .slideleft{
+.imgslide .sliderleft{
     width: 80px; height: 100%;
     position: absolute;
     left: 0;
     top: 0px;
     bottom: 0px;
-    background-color: red;
+    background-color: rgba(0,0,0,0.4);
 }
-.imglide .slideright{
+.imgslide .slideright{
     width: 80px; height: 100%;
     position: absolute;
     right: 0;
     top: 0px;
     bottom: 0px;
-    background-color: red;
+    background-color: rgba(0,0,0,0.4);
 }
-.imglide .counter{
+.imgslide .controlslider{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
+    background-color: black;
+}
+.imgslide .counter{
     width: 150px; height: 20px;
     position: relative;
-    left: 42%;
-    top: 90%;
-    background-color: red;
+    left: 0; right: 0;
+    top: 10%;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.3);
 }
+.imgslide .sliderpic{
+    position: absolute;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 3px -3px 10px;
 
+    -webkit-transition: bottom .8s ease-in;
+}
+.imgslide .one{
+    left: 0; right: 0;
+    bottom: 0px;
+    width: 42.5%; height: 90%; 
+    margin: 0px auto;
+    background-image: url(../sliderPictures/pic1.png);
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
 
 .instructions{
     padding:5% 70px; 
