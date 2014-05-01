@@ -124,52 +124,153 @@ function getScroll(){
 			bandw(id, 0)
 		}
 	}
+ 
 
-//Fall and bounding of picture in slider
 
-function falling (ele) {
-	var marggin = 30; //---Can be changed--- Give the falling picture's top heigth wich will still displayed;
+//Sliding of picture in slider in a direction
+
+function slide(ele,direction){
+
+		var pic 			= document.querySelector(ele),
+			style			= pic.style;
+			deg				= (direction == "left")? 3 : -3;		//degres of rotating during sliding
+			pos 			= $(ele).position(),
+			move			= (direction == "left")? 400 : -400, 	//px of movement
+			transitiontime 	= 1200; 								//adapt to css animation
+
+		style.left = (pos.left + move)+"px";
+
+
+
+		style.transform = "rotate("+deg+"deg)";
+		style.WebkitTransform = "rotate("+deg+"deg)";  /* Opera, Chrome, and Safari */
+		style.msTransform = "rotate("+deg+"deg)"; /* IE 9 */
+
+
+		setTimeout(function() {
+			style.transform = "";
+			style.WebkitTransform = "";  /* Opera, Chrome, and Safari */
+			style.msTransform = ""; /* IE 9 */
+
+		}, transitiontime-400);
+		
+	}
+
+//Eleveting of picture
+
+function elevate(ele){
+
+		var pic 			= document.querySelector(ele),
+			style			= pic.style;
+			deg				= 2,									//degres of rotating during eleveting
+			pos 			= $(ele).position(),
+			move			= pic.clientHeight; 					//px of movement
+			transitiontime 	= 600, 									//adapt to css ROTATE animation time 
+			transitiontime2 = 1400,
+			bottommarggin 	= 30,									//marggin on the bottom of the picture wich wont be visible -- juste for rotation's animation 
+			animation		= 'bottom 1.4s ease-in, -webkit-transform .6s ease-in-out';
+
+
+		function rotate(deg){
+			style.transform 		= "rotate("+deg+"deg)";
+			style.WebkitTransform 	= "rotate("+deg+"deg)";  /* Opera, Chrome, and Safari */
+			style.msTransform 		= "rotate("+deg+"deg)"; /* IE 9 */	
+
+			deg = -deg/1.3;
+				
+			setTimeout(function() {
+				if(Math.abs(deg) > 0.4){
+					rotate(deg);
+				}
+				else{
+					style.transform 		= "";
+					style.WebkitTransform 	= "";  /* Opera, Chrome, and Safari */
+					style.msTransform 		= ""; /* IE 9 */	
+				}
+			}, transitiontime);
+
+		}
+
+		style.WebkitTransition	= animation;
+		style.MozTransition 	= animation;
+
+		style.bottom = -bottommarggin+"px";
+
+		setTimeout(function() {
+
+			rotate(deg);
+			
+		}, transitiontime2-600);
+		
+		setTimeout(function(){
+
+			style.WebkitTransition 	= "";
+			style.MozTransition 	= "";
+
+		},transitiontime2*3)
+		
+
+	}
+
+//Fall, bounding and sliding of picture in slider
+
+function falling (ele,direction) {
+	var marggin 	= 	30, //---Can be changed--- Give the falling picture's top heigth wich will still displayed;
+		picture 	= 	document.querySelector(ele),
+		style 		=	picture.style,
+		height 		=  	picture.clientHeight,
+		finalpos	=  	-(height-marggin);
 
 	function bounding(style){
 
 		setTimeout(function() {
 
-			style.WebkitTransition = 'bottom .3s ease-out';
-			style.MozTransition = 'bottom .3s ease-out';
+			style.WebkitTransition 	= 'bottom .3s ease-out';
+			style.MozTransition 	= 'bottom .3s ease-out';
 
 			style.bottom = -(height/1.5) + "px";
 
 			setTimeout(function() {
-				style.WebkitTransition = 'bottom .4s ease-in';
-				style.MozTransition = 'bottom .4s ease-in';
+				style.WebkitTransition 	= 'bottom .4s ease-in';
+				style.MozTransition 	= 'bottom .4s ease-in';
 
 				style.bottom = finalpos + "px";
 
 				setTimeout(function() {
 
-					style.WebkitTransition = 'bottom .2s ease-out';
-					style.MozTransition = 'bottom .2s ease-out';
+					style.WebkitTransition 	= 'bottom .2s ease-out';
+					style.MozTransition 	= 'bottom .2s ease-out';
 
 					style.bottom = -(height/1.25) + "px";
 
 					setTimeout(function() {
-						style.WebkitTransition = 'bottom .3s ease-in';
-						style.MozTransition = 'bottom .3s ease-in';
+						style.WebkitTransition 	= 'bottom .3s ease-in';
+						style.MozTransition 	= 'bottom .3s ease-in';
 
 						style.bottom = finalpos + "px";
 
 						setTimeout(function() {
 
-							style.WebkitTransition = 'bottom .1s ease-out';
-							style.MozTransition = 'bottom .1s ease-out';
+							style.WebkitTransition 	= 'bottom .1s ease-out';
+							style.MozTransition 	= 'bottom .1s ease-out';
 
 							style.bottom = -(height/1.12) + "px";
 
 							setTimeout(function() {
-								style.WebkitTransition = 'bottom .2s ease-in';
-								style.MozTransition = 'bottom .2s ease-in';
+								style.WebkitTransition 	= 'bottom .2s ease-in';
+								style.MozTransition 	= 'bottom .2s ease-in';
 
 								style.bottom = finalpos + "px";
+
+
+								
+								setTimeout(function() {
+									style.WebkitTransition 	= "";
+									style.MozTransition 	= "";
+									slide(ele,direction);
+								}, 200);
+								
+
 							}, 100);
 
 						}, 300);
@@ -184,10 +285,6 @@ function falling (ele) {
 		}, 800);
 	}
 
-	var picture 	= 	document.querySelector(ele),
-		style 		=	picture.style,
-		height 		=  	picture.clientHeight,
-		finalpos	=  	-(height-marggin);
 
 
 	style.bottom =  finalpos + "px";
@@ -195,6 +292,26 @@ function falling (ele) {
 	bounding(style);
 
 }
+
+//slider control gestion
+
+function slidercontrol(){
+	var slider 		= document.querySelector(".imgslide"),
+		leftbut		= slider.querySelector(".left"),
+		rightbut	= slider.querySelector(".right");
+
+
+	leftbut.addEventListener("click",function(){
+		falling (".one","right");
+	},false);
+
+	rightbut.addEventListener("click",function(){
+		falling (".one","left");
+	},false);
+
+}
+
+
 
 //Things to update on resize (don't delete the others if don't know what there are) 
 
@@ -216,5 +333,5 @@ function falling (ele) {
 //Things to update on window load (don't delete the others if don't know what there are)
 
 	window.onload = function(){
-		falling(".one");
+		slidercontrol();
 	}

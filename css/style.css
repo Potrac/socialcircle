@@ -178,10 +178,10 @@ header button{
     margin-right:10px;
     font-size:1em;
     color:#fff;
-    transition:all .6s ease-out;
+    transition: all .6s ease-out;
 }
-header button:active{
-    
+header button:hover{
+    background: rgba(255,255,255,0.2);
 }
 header .godown{
     position: absolute;
@@ -250,7 +250,11 @@ header .godown{
     position: relative;
     overflow: hidden;
     width: 100%; height: 400px;
-    background-color: rgba(0,0,0,0.3);
+    background: radial-gradient( farthest-side circle at top left, rgb(243, 88, 88),rgba(154, 199, 97, 0.85));
+    background: -webkit-radial-gradient(top left, circle, rgb(243, 88, 88), rgba(154, 199, 97, 0.85));
+    background:    -moz-radial-gradient(top left, circle, rgb(243, 88, 88), rgba(154, 199, 97, 0.85));
+    background:     -ms-radial-gradient(top left, circle, rgb(243, 88, 88), rgba(154, 199, 97, 0.85));
+    background:      -o-radial-gradient(top left, circle, rgb(243, 88, 88), rgba(154, 199, 97, 0.85));
 }
 .imgslide .sliderleft{
     width: 80px; height: 100%;
@@ -283,18 +287,18 @@ header .godown{
     left: 0; right: 0;
     top: 10%;
     margin: 0 auto;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.0);
 }
 .imgslide .sliderpic{
     position: absolute;
     border-radius: 8px 8px 0 0;
-    box-shadow: 3px -3px 10px;
+    box-shadow: 4px -4px 30px rgba(0,0,0,0.7);
 
-    -webkit-transition: bottom .8s ease-in;
+    -webkit-transition: bottom .8s ease-in, -webkit-transform .6s ease-in-out, left 1.2s;
 }
 .imgslide .one{
     left: 0; right: 0;
-    bottom: 0px;
+    bottom: -20px;
     width: 42.5%; height: 90%; 
     margin: 0px auto;
     background-image: url(../sliderPictures/pic1.png);
