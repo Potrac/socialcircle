@@ -111,6 +111,7 @@ function getScroll(){
 		}
 	}
 
+	//desaturate the header when scrolling down
 	function bandwonscroll(id){
 
 		var scrollinfo = getScroll(),
@@ -126,10 +127,52 @@ function getScroll(){
 	}
  
 
+//animation like a hanging object
+
+function rotation(style, deg, transitiontime, animation, limite){
+
+	var defaultani	= style.WebkitTransition | style.MozTransition | "",
+		defaultani 	= (!defaultani)? "": defaultani;
+
+	transitiontime 	= (transitiontime 	=== undefined)? 600 : transitiontime;
+	animation 		= (animation	 	=== undefined)? "-webkit-transform ."+transitiontime/100 +"s ease-in-out" : animation;
+	limite 		 	= (limite		 	=== undefined)? 0.4 : limite;
+
+
+	style.WebkitTransition	= animation;
+	style.MozTransition 	= animation;
+
+	function rotate(style,deg){
+		style.transform 		= "rotate("+deg+"deg)";
+		style.WebkitTransform 	= "rotate("+deg+"deg)";  /* Opera, Chrome, and Safari */
+		style.msTransform 		= "rotate("+deg+"deg)"; /* IE 9 */	
+
+		deg = -deg/1.3;
+			
+		setTimeout(function() {
+			if(Math.abs(deg) > limite){
+				rotate(style, deg);
+			}
+			else{
+
+				style.transform 		= ""; //reinitilize the rotation
+				style.WebkitTransform 	= "";  
+				style.msTransform 		= ""; 	
+
+				style.WebkitTransition 	=  defaultani; //reinitilize the transition
+				style.MozTransition 	=  defaultani;
+			}
+		}, transitiontime);
+
+	}
+
+	rotate(style,deg);
+}
+
 
 //Sliding of picture in slider in a direction
 
-function slide(ele,direction){
+function slide(ele,direction,active){
 
 		var pic 			= document.querySelector(ele),
 			style			= pic.style;
@@ -138,8 +181,9 @@ function slide(ele,direction){
 			move			= (direction == "left")? 400 : -400, 	//px of movement
 			transitiontime 	= 1200; 								//adapt to css animation
 
-		style.left = (pos.left + move)+"px";
+		active 	= (active === undefined)? undefined : 3;
 
+		style.left = (pos.left + move)+"px";
 
 
 		style.transform = "rotate("+deg+"deg)";
@@ -148,13 +192,11 @@ function slide(ele,direction){
 
 
 		setTimeout(function() {
-			style.transform = "";
-			style.WebkitTransform = "";  /* Opera, Chrome, and Safari */
-			style.msTransform = ""; /* IE 9 */
-
+			rotation(style,-deg/3,undefined,undefined,active);
 		}, transitiontime-400);
 		
 	}
+
 
 //Eleveting of picture
 
@@ -171,50 +213,21 @@ function elevate(ele){
 			animation		= 'bottom 1.4s ease-in, -webkit-transform .6s ease-in-out';
 
 
-		function rotate(deg){
-			style.transform 		= "rotate("+deg+"deg)";
-			style.WebkitTransform 	= "rotate("+deg+"deg)";  /* Opera, Chrome, and Safari */
-			style.msTransform 		= "rotate("+deg+"deg)"; /* IE 9 */	
-
-			deg = -deg/1.3;
-				
-			setTimeout(function() {
-				if(Math.abs(deg) > 0.4){
-					rotate(deg);
-				}
-				else{
-					style.transform 		= "";
-					style.WebkitTransform 	= "";  /* Opera, Chrome, and Safari */
-					style.msTransform 		= ""; /* IE 9 */	
-				}
-			}, transitiontime);
-
-		}
-
-		style.WebkitTransition	= animation;
-		style.MozTransition 	= animation;
 
 		style.bottom = -bottommarggin+"px";
 
 		setTimeout(function() {
 
-			rotate(deg);
+			rotation(style,deg,600,animation);
 			
-		}, transitiontime2-600);
-		
-		setTimeout(function(){
-
-			style.WebkitTransition 	= "";
-			style.MozTransition 	= "";
-
-		},transitiontime2*3)
-		
+		}, transitiontime2-700);
+			
 
 	}
 
 //Fall, bounding and sliding of picture in slider
 
-function falling (ele,direction) {
+function falling (ele,direction,elements,active) {
 	var marggin 	= 	30, //---Can be changed--- Give the falling picture's top heigth wich will still displayed;
 		picture 	= 	document.querySelector(ele),
 		style 		=	picture.style,
@@ -262,12 +275,20 @@ function falling (ele,direction) {
 
 								style.bottom = finalpos + "px";
 
-
-								
 								setTimeout(function() {
 									style.WebkitTransition 	= "";
 									style.MozTransition 	= "";
-									slide(ele,direction);
+									
+									for (var i = elements.length - 1; i >= 0; i--) {
+										if(i==active){
+											slide(elements[i],direction,active);
+										}
+										else
+										{
+											slide(elements[i],direction);
+										}
+									};
+									
 								}, 200);
 								
 
@@ -293,23 +314,62 @@ function falling (ele,direction) {
 
 }
 
+
+
 //slider control gestion
 
 function slidercontrol(){
 	var slider 		= document.querySelector(".imgslide"),
 		leftbut		= slider.querySelector(".left"),
-		rightbut	= slider.querySelector(".right");
+		rightbut	= slider.querySelector(".right"),
+		eleClasses 	= [".ltwo",".one",".rtwo"],
+		eleLength	= eleClasses.length,
+		elements	= [],
+		active		= 1;
+
+	for (var i = 0; i < eleLength; i++) {
+		elements.push(document.querySelector(eleClasses[i]));
+	};
 
 
 	leftbut.addEventListener("click",function(){
-		falling (".one","right");
+
+		active++;
+		falling (eleClasses[active-1],"right",eleClasses,active);
+
+		setTimeout(function() {
+			elevate(eleClasses[active]);
+		}, 4000);
+
 	},false);
 
 	rightbut.addEventListener("click",function(){
-		falling (".one","left");
+
+		active--;
+		falling (eleClasses[active+1],"left",eleClasses,active);
+
+		setTimeout(function() {
+			elevate(eleClasses[active]);
+		}, 4000);
+
 	},false);
 
-}
+	/* for (var i = elements.length - 1; i >= 0; i--) { 			//on mouse over the element, focus.
+		elements[i].addEventListener("mouseover",function(){
+			if(this.style.bottom == "-330px"){
+				this.style.bottom = -240+"px";
+			}
+		},false);
+	};
+	for (var i = elements.length - 1; i >= 0; i--) {
+		elements[i].addEventListener("mouseout",function(){
+			if(this.style.bottom == "-240px"){
+				this.style.bottom = "-330px";
+			}
+		},false); 
+	};
+	*/
+}	
 
 
 
