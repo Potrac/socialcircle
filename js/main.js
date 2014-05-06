@@ -219,6 +219,7 @@ function elevate(ele){
 		setTimeout(function() {
 
 			rotation(style,deg,600,animation);
+			pic.className = pic.className.replace("close", "open");
 			
 		}, transitiontime2-700);
 			
@@ -234,7 +235,8 @@ function falling (ele,direction,elements,active) {
 		height 		=  	picture.clientHeight,
 		finalpos	=  	-(height-marggin);
 
-	function bounding(style){
+	function bounding(ele){
+		var style =	ele.style;
 
 		setTimeout(function() {
 
@@ -278,6 +280,8 @@ function falling (ele,direction,elements,active) {
 								setTimeout(function() {
 									style.WebkitTransition 	= "";
 									style.MozTransition 	= "";
+									ele.className = ele.className.replace("open","close");
+									style.bottom = "";
 									
 									for (var i = elements.length - 1; i >= 0; i--) {
 										if(i==active){
@@ -310,7 +314,7 @@ function falling (ele,direction,elements,active) {
 
 	style.bottom =  finalpos + "px";
 
-	bounding(style);
+	bounding(picture);
 
 }
 
@@ -334,17 +338,6 @@ function slidercontrol(){
 
 	leftbut.addEventListener("click",function(){
 
-		active++;
-		falling (eleClasses[active-1],"right",eleClasses,active);
-
-		setTimeout(function() {
-			elevate(eleClasses[active]);
-		}, 4000);
-
-	},false);
-
-	rightbut.addEventListener("click",function(){
-
 		active--;
 		falling (eleClasses[active+1],"left",eleClasses,active);
 
@@ -354,21 +347,17 @@ function slidercontrol(){
 
 	},false);
 
-	/* for (var i = elements.length - 1; i >= 0; i--) { 			//on mouse over the element, focus.
-		elements[i].addEventListener("mouseover",function(){
-			if(this.style.bottom == "-330px"){
-				this.style.bottom = -240+"px";
-			}
-		},false);
-	};
-	for (var i = elements.length - 1; i >= 0; i--) {
-		elements[i].addEventListener("mouseout",function(){
-			if(this.style.bottom == "-240px"){
-				this.style.bottom = "-330px";
-			}
-		},false); 
-	};
-	*/
+	rightbut.addEventListener("click",function(){
+
+		active++;
+		falling (eleClasses[active-1],"right",eleClasses,active);
+
+		setTimeout(function() {
+			elevate(eleClasses[active]);
+		}, 4000);
+
+	},false);
+
 }	
 
 
