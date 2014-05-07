@@ -228,11 +228,8 @@ function elevate(ele){
 
 //Fall, bounding and sliding of picture in slider
 
-<<<<<<< HEAD
-function falling (ele, direction) {
-=======
 function falling (ele,direction,elements,active) {
->>>>>>> dc86793cb9130ba42669d6daf62c069a0c1c5113
+
 	var marggin 	= 	30, //---Can be changed--- Give the falling picture's top heigth wich will still displayed;
 		picture 	= 	document.querySelector(ele),
 		style 		=	picture.style,
